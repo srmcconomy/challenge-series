@@ -1,0 +1,39 @@
+<html>
+<head>
+  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="/js/checklist.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/checklist.css">
+</head>
+<body data-name="<%= name %>">
+  <div class="container">
+    <div class="header">
+      <div class="score">
+        Score:
+        <div id="counter">
+          <%= data.count %>
+        </div>
+      </div>
+      <div class="name">
+        <%= name %>
+      </div>
+    </div>
+    <div class="list">
+      <% for (var e in data.list) { %>
+      <% var id = e.replace(/ /g, '-') %>
+      <label for="<%= id %>" class="<%= data.list[e] ? '' : 'unchecked' %>">
+        <div style="background-image: url('/images/<%= id %>.png')" class="check">
+          <div>
+            <%= e %>
+          </div>
+          <div>
+            <input id="<%= id %>" data-enemy="<%= e %>" type="checkbox" <%= data.list[e] ? 'checked' : '' %> >
+          </div>
+        </div>
+      </label>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>
