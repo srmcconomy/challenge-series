@@ -25,7 +25,7 @@ function check(e) {
     $('#counter').html(+$('#counter').html() + 1)
   }
   $e.prop('checked', true);
-  $e.parents('.check').removeClass('unchecked');
+  $e.parents('label').removeClass('unchecked');
 }
 
 function uncheck(e) {
@@ -34,5 +34,5 @@ function uncheck(e) {
     $('#counter').html(+$('#counter').html() + 1)
   }
   $e.prop('checked', true);
-  $e.parents('.check').addClass('unchecked');
+  $e.parents('label').addClass('unchecked');
 }
