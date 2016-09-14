@@ -15,7 +15,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-require('/enemy-counter')(app, io);
-require('/skull-counter')(app, io);
+require('./enemy-counter')(app, io);
+require('./skull-counter')(app, io);
 
 server.listen(process.env.PORT || 8083)
