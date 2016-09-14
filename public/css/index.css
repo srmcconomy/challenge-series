@@ -3,17 +3,33 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 36px;
-  background: #111111;
-  color: white;
+  font-family: Roboto, Arial;
+  background: #303030;
+  color: rgba(0, 0, 0, 0.8)
 }
 input {
+  border-radius: 2px;
   font-size: inherit;
+  font-family: inherit;
   background: inherit;
   color: inherit;
   outline: none;
-  border: 1px solid white;
-  padding: 0 5px;
+  border: 0;
+  padding: 10px;
 }
 button {
   font-size: inherit;
+  background: inherit;
+  border: inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+button:focus {
+  outline: none;
+}
+div {
+  background: white;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
 }

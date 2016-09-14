@@ -1,5 +1,5 @@
 $(function() {
-  var socket = io();
+  var socket = io('/enemy-counter');
   var name = $('body').data('name')
   socket.emit('join', name)
   socket.on('check', check)

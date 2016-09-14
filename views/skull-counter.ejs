@@ -2,31 +2,82 @@
 <head>
   <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="/js/checklist.js"></script>
+  <script src="/js/skulls.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="/css/checklist.css">
+  <link rel="stylesheet" type="text/css" href="/css/skulls.css">
 </head>
 <body data-name="<%= name %>">
+  <%
+  const skulls = {
+    "Kokiri Forest": { sub: '', count: 3 },
+    "Lost Woods Area": { sub: 'Lost Woods and Sacred Forest Meadow', count: 4 },
+    "Hyrule Field Area": { sub: 'Hyrule Field and all of its grottos', count: 2 },
+    "Market Area": { sub: 'Market and its buildings, Hyrule Castle, and Ganon\'s Castle', count: 4 },
+    "Lon Lon Ranch": { sub: '', count: 4 },
+    "Kakariko Area": { sub: 'Kakariko Village and the Graveyard', count: 8 },
+    "Death Mountain Area": { sub: 'Death Mountain Trail and Crater, plus Goron City', count: 8 },
+    "Zora's Domain Area": { sub: 'Zora River, Zora\'s Domain, and Zora Fountain', count: 8 },
+    "Lake Hylia": { sub: '', count: 5 },
+    "Gerudo Valley": { sub: '', count: 4 },
+    "Gerudo's Fortress": { sub: '', count: 2 },
+    "Desert Colossus Area": { sub: 'Haunted Wasteland and Desert Colossus', count: 4 },
+    "Bottom of the Well": { sub: '', count: 3 },
+    "Ice Cavern": { sub: '', count: 3 },
+    "Deku Tree": { sub: '', count: 4 },
+    "Dodongo's Cavern": { sub: '', count: 5 },
+    "Jabu-Jabu's Belly": { sub: '', count: 4 },
+    "Forest Temple": { sub: '', count: 5 },
+    "Fire Temple": { sub: '', count: 5 },
+    "Water Temple": { sub: '', count: 5 },
+    "Shadow Temple": { sub: '', count: 5 },
+    "Spirit Temple": { sub: '', count: 5 }
+  }
+  %>
   <div class="container">
     <div class="header">
       <div class="score">
-        Score:
+        Score
         <div id="counter">
           <%= data.count %>
         </div>
+      </div>
+      <div class="simple">
+        Is this too much? Use a <a href="simple">more simple counter!</a>
       </div>
       <div class="name">
         <%= name %>
       </div>
     </div>
     <div class="list">
-      <% for (var e in data.list) { %>
-      <div class="check">
-        <div>
-          <%= e %>
+      <% for (var e in skulls) { %>
+      <div class="card skull-container" data-area="<%= e %>" data-den="<%= skulls[e].count %>">
+        <div class="label">
+          <div class="main">
+            <%= e %>
+          </div>
+          <div class="sub">
+            <%= skulls[e].sub %>
+          </div>
         </div>
-        <div>
-          <%= data.list[e] %>
+        <div class="skull">
+          <div>
+            <span class="num">
+              <%= data.list[e] %>
+            </span>
+            /
+            <span class="den">
+              <%= skulls[e].count %>
+            </span>
+          </div>
+          <div class="buttons">
+            <div class="button minus hide">
+              -
+            </div>
+            <div class="button big plus hide">
+              +
+            </div>
+          </div>
+
         </div>
       </div>
       <% } %>

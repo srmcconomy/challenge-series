@@ -1,0 +1,172 @@
+body, html {
+  background: #303030;
+  color: white;
+  margin: 0;
+  font-family: Roboto, Arial;
+}
+
+.list {
+  padding-top: 20px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  overflow: auto;
+  height: calc(100% - 120px);
+  align-content: flex-start;
+}
+
+.container {
+  height: 100%;
+}
+
+.card {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  background: #424242;
+}
+
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.skull-container {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  width: 400px;
+  margin: 20px;
+  padding: 24px 16px;
+}
+
+.skull-container .label {
+  flex: 2;
+}
+
+.skull-container .skull {
+  flex: 1;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.skull-container .label .main {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.done {
+  background: #051;
+}
+
+.header {
+  background: #212121;
+  align-items: center;
+  display: flex;
+  height: 64px;
+  padding: 0 64px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+}
+
+.header div{
+  padding-right: 20px;
+}
+
+input {
+  display: none;
+}
+
+.score {
+  display: flex;
+  flex: 1;
+  color: white;
+  font-size: 36px;
+}
+.score div {
+  padding-left: 32px;
+}
+
+.name {
+  color: white;
+  font-size: 24px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+  width: 80%;
+}
+
+.button.hide {
+  color: rgba(1, 1, 1, 0);
+}
+
+.button {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  cursor: pointer;
+  line-height: 32px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.skull-container:hover .button {
+  color: white;
+}
+
+.button.big {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  line-height: 48px;
+}
+
+.button:hover {
+box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+}
+
+a {
+  text-decoration: inherit;
+  color: lightblue;
+}
+
+a:hover {
+  color:skyblue;
+}
+a:active {
+  color:inherit;
+}
+a:focus {
+  color: inherit;
+}
+
+.simple {
+  margin-right: 30px;
+}
+
+.simple-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.image {
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.simple-container .skull {
+  flex: 3;
+}

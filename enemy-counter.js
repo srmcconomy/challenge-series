@@ -84,16 +84,17 @@ const enemies = [
 ];
 
 module.exports = (app, io) => {
-  io.on('connection', socket => {
+  const nsp = io.of('/enemy-counter')
+  nsp.on('connection', socket => {
     let name;
     socket.on('join', n => {
-      console.log(`socket join ${n}`)
+      console.log(`[enemy-counter] socket join ${n}`)
       name = n;
       socket.join(n);
     });
 
     socket.on('check', enemy => {
-      console.log(`socket ${name} check ${enemy}`)
+      console.log(`[enemy-counter] socket ${name} check ${enemy}`)
       if (data[name].list[enemy] === false) {
         data[name].count++;
       }
@@ -102,7 +103,7 @@ module.exports = (app, io) => {
     })
 
     socket.on('uncheck', enemy => {
-      console.log(`socket ${name} uncheck ${enemy}`)
+      console.log(`[enemy-counter] socket ${name} uncheck ${enemy}`)
       if (data[name].list[enemy] === true) {
         data[name].count--;
       }
@@ -123,7 +124,7 @@ module.exports = (app, io) => {
 
   app.get('/enemy-counter/:name', (req, res) => {
     const name = req.params.name
-      console.log(`GET ${name}`)
+      console.log(`[enemy-counter] GET ${name}`)
     if (!data.hasOwnProperty(name)) {
       data[name] = { count: 0, list: {} }
       for (var e of enemies) {
