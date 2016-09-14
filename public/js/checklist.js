@@ -33,6 +33,6 @@ function uncheck(e) {
   if ($e.is(':checked')) {
     $('#counter').html(+$('#counter').html() - 1)
   }
-  $e.prop('checked', true);
+  $e.prop('checked', false);
   $e.parents('label').addClass('unchecked');
 }
