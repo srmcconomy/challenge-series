@@ -174,4 +174,10 @@ app.get('/enemy-counter/:name', (req, res) => {
   res.render('enemy-counter', { name, data: data[name] })
 })
 
+app.get('/skull-counter/:name', (req, res) => {
+  const name = req.params.name;
+  console.log(`GET ${name}`)
+  
+});
+
 server.listen(process.env.PORT || 8083)

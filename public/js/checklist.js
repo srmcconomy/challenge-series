@@ -30,8 +30,8 @@ function check(e) {
 
 function uncheck(e) {
   var $e = $("[data-enemy='" + e + "'")
-  if (!$e.is(':checked')) {
-    $('#counter').html(+$('#counter').html() + 1)
+  if ($e.is(':checked')) {
+    $('#counter').html(+$('#counter').html() - 1)
   }
   $e.prop('checked', true);
   $e.parents('label').addClass('unchecked');
