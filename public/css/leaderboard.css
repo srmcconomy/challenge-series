@@ -1,0 +1,39 @@
+html, body {
+  background: #303030;
+  color: white;
+  font-family: Roboto, Arial;
+  font-size: 24px;
+}
+
+body {
+  display: flex;
+}
+
+.list {
+  position: relative;
+}
+
+.player {
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 200px;
+  background: #424242;
+  position: absolute;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  display: flex;
+
+}
+
+.score {
+  flex: 1;
+  text-align: right;
+}
+
+.positions {
+  margin: 5px;
+}
+.positions div {
+  line-height: 44px;
+  vertical-align: middle;
+}

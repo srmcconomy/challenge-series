@@ -31,6 +31,11 @@ module.exports = (app, io) => {
 
   nsp.on('connection', socket => {
     let name;
+
+    socket.on('leaderboard', () => {
+      socket.join('leaderboard');
+    })
+
     socket.on('join', n => {
       console.log(`[skull-counter] [${n}] socket join`)
       name = n;
@@ -44,6 +49,7 @@ module.exports = (app, io) => {
       console.log(data[name].list[area])
       if (area !== 'all') data[name].count++;
       socket.broadcast.to(name).emit('plus', area);
+      socket.broadcast.to('leaderboard').emit('update', { name, score: Math.max(data[name].list.all, data[name].count) });
     })
 
     socket.on('minus', area => {
@@ -52,6 +58,7 @@ module.exports = (app, io) => {
       data[name].list[area]--;
       if (area !== 'all') data[name].count--;
       socket.broadcast.to(name).emit('minus', area);
+      socket.broadcast.to('leaderboard').emit('update', { name, score: Math.max(data[name].list.all, data[name].count) });
     })
   })
 
@@ -89,6 +96,8 @@ module.exports = (app, io) => {
 
     res.render('skull-counter-simple', { name, count: data[name].list.all });
   });
+
+
 
 
 

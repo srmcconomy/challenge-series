@@ -1,11 +1,30 @@
-
-<% for (var e of leaders) { %>
-<div>
-  <span>
-    <%= e.name %>
-  </span>
-  <span>
-    <%= e.score %>
-  </span>
-</div>
-<% } %>
+<html>
+<head>
+  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <script src="/js/leaderboard.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/leaderboard.css">
+</head>
+<body data-leaders="<%= JSON.stringify(leaders) %>">
+  <div class="positions">
+    <% for (var i in leaders) { %>
+      <div><%= +i + 1 %></div>
+    <% } %>
+  </div>
+  <div class="list">
+    <% for (var i in leaders) { %>
+    <% var e = leaders[i] %>
+    <div id="<%= e.name.replace(' ', '-') %>" class="player" style="top:<%= i * 44 %>px">
+      <span>
+        <%= e.name %>
+      </span>
+      <span class="score">
+        <%= e.score %>
+      </span>
+    </div>
+    <% i++ %>
+    <% } %>
+  </div>
+</body>
+</html>
