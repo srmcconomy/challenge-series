@@ -174,4 +174,4 @@ app.get('/enemy-counter/:name', (req, res) => {
   res.render('enemy-counter', { name, data: data[name] })
 })
 
-server.listen(3000)
+server.listen(process.env.PORT || 8083)
