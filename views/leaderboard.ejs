@@ -15,7 +15,7 @@
   <div class="list">
     <% for (var i in leaders) { %>
     <% var e = leaders[i] %>
-    <div id="<%= e.name.replace(' ', '-') %>" class="player" style="top:<%= i * 44 %>px">
+    <div data-name="<%= e.name %>" class="player" style="top:<%= i * 44 %>px">
       <span>
         <%= e.name %>
       </span>

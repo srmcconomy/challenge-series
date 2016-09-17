@@ -5,7 +5,7 @@ function sortFunc(leaders) {
 }
 
 function newElem(player) {
-  return $('<div id="' + player.name.replace(' ', '-') + '" style="top:' + player.place * 44 + 'px" class="player"><span>' + player.name + '</span><span class="score">' + player.score + '</span></div>')
+  return $('<div data-name="' + player.name + '" style="top:' + player.place * 44 + 'px" class="player"><span>' + player.name + '</span><span class="score">' + player.score + '</span></div>')
 }
 
 $(function() {
@@ -30,8 +30,9 @@ $(function() {
     var list = Object.keys(leaders).sort(sortFunc(leaders));
     for (var p in list) {
       leaders[list[p]].place = +p;
-      $('#' + list[p].replace(' ', '-')).css('top', leaders[list[p]].place * 44 + 'px')
-      $('#' + list[p].replace(' ', '-')).find('.score').html(leaders[list[p]].score)
+      var $player = $("[data-name='" + list[p] + "']");
+      $player.css('top', leaders[list[p]].place * 44 + 'px')
+      $player.find('.score').html(leaders[list[p]].score)
     }
   })
 

@@ -1,13 +1,54 @@
+
 body {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: 36px;
   font-family: Roboto, Arial;
   background: #303030;
-  color: rgba(0, 0, 0, 0.8)
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
 }
-input {
+
+.header {
+  background: #212121;
+  width: 100%;
+  line-height: 64px;
+  font-size: 18px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+}
+
+.header .title {
+  width: 1000px;
+}
+
+.container {
+  width: 1000px;
+}
+
+.challenge {
+  margin: 50px 0 100px 0;
+}
+
+.challenge .title {
+  color: white;
+  font-size: 36px;
+  margin: 25px 0;
+}
+
+.challenge .text {
+  font-size: 20px;
+}
+
+.input {
+  display: flex;
+}
+
+.input input {
   border-radius: 2px;
   font-size: inherit;
   font-family: inherit;
@@ -16,18 +57,25 @@ input {
   outline: none;
   border: 0;
   padding: 10px;
+  flex: 1;
 }
-button {
+.input button {
   font-size: inherit;
   background: inherit;
   border: inherit;
   font-family: inherit;
   cursor: pointer;
+  color: inherit;
+  font-weight: 500;
+  padding: 0 25px;
 }
-button:focus {
+
+.input button:focus {
   outline: none;
 }
-div {
+
+.input {
+  color: rgba(0, 0, 0, 0.8);
   background: white;
   border-radius: 2px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
