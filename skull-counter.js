@@ -1,4 +1,4 @@
-const data = {}
+let data = {}
 
 const skulls = {
   "Kokiri Forest": 3,
@@ -71,6 +71,10 @@ module.exports = (app, io) => {
     res.render('leaderboard', { leaders: Object.keys(data).map(name => ({name, score: Math.max(data[name].list.all, data[name].count) })).sort((a, b) => b.score - a.score) });
   });
 
+  app.get('/skull-counter/reset', (req, res) => {
+    res.render('reset')
+  })
+
   app.get('/skull-counter/:name', (req, res) => {
     const name = req.params.name;
     console.log(`[skull-counter] GET ${name}`)
@@ -96,6 +100,14 @@ module.exports = (app, io) => {
 
     res.render('skull-counter-simple', { name, count: data[name].list.all });
   });
+
+
+
+  app.post('/skull-counter/reset', (req, res) => {
+    console.log('RESET')
+    data = {};
+    res.status(200).send('ok');
+  })
 
 
 
