@@ -33,7 +33,7 @@ let isRunningDevServer = false;
 gulp.task('build:css', () =>
   gulp.src(config.files.css.entry)
     .pipe(plumber())
-    .pipe(sass(config.build.sass))
+    .pipe(sass(config.build.scss))
     .pipe(prefix(config.build.autoprefixer))
     .pipe(size({ title: 'CSS' }))
     .pipe(gulp.dest(`${config.files.staticAssets}${config.files.css.out}`))

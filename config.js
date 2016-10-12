@@ -26,7 +26,7 @@ module.exports = {
         }
       }
     },
-    sass: {
+    scss: {
       style: 'compact',
       includePaths: ['./assets/css', './node_modules'],
     },
@@ -46,8 +46,8 @@ module.exports = {
       out: 'build'
     },
     css: {
-      entry: './assets/sass/main.sass',
-      src: './assets/sass/**/**/*.sass',
+      entry: './assets/scss/main.scss',
+      src: './assets/scss/**/**/*.scss',
       out: 'css',
     },
     staticAssets: 'build/static/'

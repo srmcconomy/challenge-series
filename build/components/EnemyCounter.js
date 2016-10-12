@@ -1,21 +1,21 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = App;
+exports.default = EnemyCounter;
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function App(props) {
+function EnemyCounter(props) {
   return _react2.default.createElement(
-    'div',
-    null,
+    "div",
+    { className: "EnemyCounter" },
     props.children
   );
 }
-//# sourceMappingURL=App.js.map
+//# sourceMappingURL=EnemyCounter.js.map

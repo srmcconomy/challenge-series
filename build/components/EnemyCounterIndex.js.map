@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/EnemyCounterIndex.jsx"],"names":["EnemyCounterIndex"],"mappings":";;;;;kBAIwBA,iB;;AAFxB;;;;;;AAEe,SAASA,iBAAT,GAA6B;AAC1C,SAAO,0CAAP;AACD","file":"components/EnemyCounterIndex.js","sourcesContent":["// @flow\n\nimport React from 'react';\n\nexport default function EnemyCounterIndex() {\n  return <div />;\n}\n"],"sourceRoot":"/source/"}
