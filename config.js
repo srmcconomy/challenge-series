@@ -1,4 +1,10 @@
 module.exports = {
+  db: {
+    name: 'challengeseries',
+    password: 'kerlogin',
+    user: 'srmcconomy',
+    host: 'challenge-series.cmz8rzy3f4sa.us-east-1.rds.amazonaws.com',
+  },
   ports: {
     webpack: 8000,
     express: 5092

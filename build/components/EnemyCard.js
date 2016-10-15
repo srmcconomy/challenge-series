@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = EnemyCard;
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -13,48 +13,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function EnemyCard(props) {
   const {
-    enemy,
     name,
-    count,
-    values,
-    onIncrementClicked,
-    onDecrementClicked
+    onClick
   } = props;
+  const enemyID = name.replace(/\s/g, '-');
   return _react2.default.createElement(
-    "div",
-    { className: "EnemyCard" },
-    _react2.default.createElement("div", {
-      className: "image",
-      style: { backgroundImage: `images/${ enemy }.png` }
-    }),
+    'div',
+    {
+      className: `EnemyCard${ props.selected ? ' selected' : '' }`,
+      style: { backgroundImage: `url(/images/${ enemyID }.png)` },
+      onClick: onClick
+    },
     _react2.default.createElement(
-      "div",
-      { className: "count" },
-      count
-    ),
-    _react2.default.createElement(
-      "div",
-      { className: "values" },
-      values
-    ),
-    _react2.default.createElement(
-      "div",
-      { className: "name" },
+      'div',
+      { className: 'name' },
       name
-    ),
-    _react2.default.createElement(
-      "div",
-      { className: "buttons" },
-      _react2.default.createElement(
-        "button",
-        { onClick: onIncrementClicked },
-        "+"
-      ),
-      _react2.default.createElement(
-        "button",
-        { onClick: onDecrementClicked },
-        "-"
-      )
     )
   );
 }

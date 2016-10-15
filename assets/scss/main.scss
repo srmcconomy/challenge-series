@@ -1,3 +1,11 @@
-.EnemyCounter {
-  background: #212121;
+@import 'enemyChecklist';
+
+@font-face {
+  font-family: FOT-Chiaro Std;
+  src: url("/fonts/FOT-ChiaroStd-B_0.otf") format("opentype");
+}
+
+body {
+  font-family: FOT-Chiaro Std;
+  margin: 0;
 }

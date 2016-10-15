@@ -4,43 +4,78 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+exports.default = function (store) {
+  function onPlayerEnter(nextState) {
+    const { name } = nextState.params;
+    if (!store.getState().enemyChecklist.playerList.has(name)) {
+      store.dispatch((0, _createNewPlayer2.default)(name));
+    }
+  }
+
+  return _react2.default.createElement(
+    _reactRouter.Route,
+    { component: _App2.default, path: '/' },
+    _react2.default.createElement(
+      _reactRouter.Route,
+      { component: _EnemyChecklist2.default, path: 'enemy-counter' },
+      _react2.default.createElement(_reactRouter.IndexRoute, {
+        components: {
+          header: () => _react2.default.createElement('div', null),
+          body: _EnemyCounterIndex2.default
+        }
+      }),
+      _react2.default.createElement(_reactRouter.Route, {
+        path: 'user/:name',
+        components: {
+          header: _EnemyChecklistHeader2.default,
+          body: _EnemyChecklistList2.default
+        },
+        onEnter: onPlayerEnter
+      }),
+      _react2.default.createElement(_reactRouter.Route, {
+        path: 'leaderboard',
+        components: {
+          header: null,
+          body: _EnemyChecklistLeaderboard2.default
+        }
+      })
+    )
+  );
+};
+
+var _reactRouter = require('react-router');
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require('react-router');
 
 var _App = require('../components/App');
 
 var _App2 = _interopRequireDefault(_App);
 
-var _EnemyCounter = require('../components/EnemyCounter');
+var _createNewPlayer = require('../actions/createNewPlayer');
 
-var _EnemyCounter2 = _interopRequireDefault(_EnemyCounter);
+var _createNewPlayer2 = _interopRequireDefault(_createNewPlayer);
 
-var _EnemyCounterChecklist = require('../components/EnemyCounterChecklist');
+var _EnemyChecklistHeader = require('../components/EnemyChecklistHeader');
 
-var _EnemyCounterChecklist2 = _interopRequireDefault(_EnemyCounterChecklist);
+var _EnemyChecklistHeader2 = _interopRequireDefault(_EnemyChecklistHeader);
+
+var _EnemyChecklist = require('../components/EnemyChecklist');
+
+var _EnemyChecklist2 = _interopRequireDefault(_EnemyChecklist);
+
+var _EnemyChecklistList = require('../components/EnemyChecklistList');
+
+var _EnemyChecklistList2 = _interopRequireDefault(_EnemyChecklistList);
 
 var _EnemyCounterIndex = require('../components/EnemyCounterIndex');
 
 var _EnemyCounterIndex2 = _interopRequireDefault(_EnemyCounterIndex);
 
-var _EnemyCounterLeaderboard = require('../components/EnemyCounterLeaderboard');
+var _EnemyChecklistLeaderboard = require('../components/EnemyChecklistLeaderboard');
 
-var _EnemyCounterLeaderboard2 = _interopRequireDefault(_EnemyCounterLeaderboard);
+var _EnemyChecklistLeaderboard2 = _interopRequireDefault(_EnemyChecklistLeaderboard);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _react2.default.createElement(
-  _reactRouter.Route,
-  { component: _App2.default, path: '/' },
-  _react2.default.createElement(
-    _reactRouter.Route,
-    { component: _EnemyCounter2.default, path: 'enemy-counter' },
-    _react2.default.createElement(_reactRouter.IndexRoute, { component: _EnemyCounterIndex2.default }),
-    _react2.default.createElement(_reactRouter.Route, { path: 'user/:name', component: _EnemyCounterChecklist2.default }),
-    _react2.default.createElement(_reactRouter.Route, { path: 'leaderboard', component: _EnemyCounterLeaderboard2.default })
-  )
-);
 //# sourceMappingURL=routes.js.map

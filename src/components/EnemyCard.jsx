@@ -3,36 +3,23 @@
 import React from 'react';
 
 type Props = {
-  enemy: string,
   name: string,
-  count: number,
-  values: Array<number>,
-  onIncrementClicked: () => void,
-  onDecrementClicked: () => void,
+  onClick: () => void,
 }
 
 export default function EnemyCard(props: Props) {
   const {
-    enemy,
     name,
-    count,
-    values,
-    onIncrementClicked,
-    onDecrementClicked
+    onClick,
   } = props;
+  const enemyID = name.replace(/\s/g, '-');
   return (
-    <div className="EnemyCard">
-      <div
-        className="image"
-        style={{ backgroundImage: `images/${enemy}.png` }}
-      />
-      <div className="count">{count}</div>
-      <div className="values">{values}</div>
+    <div
+      className={`EnemyCard${props.selected ? ' selected' : ''}`}
+      style={{ backgroundImage: `url(/images/${enemyID}.png)` }}
+      onClick={onClick}
+    >
       <div className="name">{name}</div>
-      <div className="buttons">
-        <button onClick={onIncrementClicked}>+</button>
-        <button onClick={onDecrementClicked}>-</button>
-      </div>
     </div>
   );
 }

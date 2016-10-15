@@ -1,15 +1,15 @@
 // @flow
 
 import { combineReducers } from 'redux';
-import enemyCounter from './enemyCounter';
-import type { EnemyCounterState,EnemyCounterAction } from './enemyCounter';
+import enemyChecklist from './enemyChecklist';
+import type { EnemyChecklistState, EnemyChecklistAction } from './enemyChecklist';
 
 export type State = {
-  enemyCounter: EnemyCounterState,
+  enemyChecklist: EnemyChecklistState,
 };
 
-export type Action = EnemyCounterAction;
+export type Action = EnemyChecklistAction;
 
 export default combineReducers({
-  enemyCounter,
+  enemyChecklist,
 });

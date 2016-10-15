@@ -1,75 +1,71 @@
 import Sequelize from 'sequelize';
-import { List } from 'immutable';
+import { Map, Set, List } from 'immutable';
+
+import config from '../../config';
+import type { State } from '../reducers';
 
 const sequelize = new Sequelize(
-  process.env.DB,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
+  config.db.name,
+  config.db.user,
+  config.db.password,
   {
-    host: process.env.DB_HOST,
+    host: config.db.host,
+    logging: false,
   }
 );
 
-export const Player = sequelize.define('player', {
+export const Player = sequelize.define('Player', {
   name: Sequelize.STRING,
 });
 
-export const Enemy = sequelize.define('enemy', {
+export const Enemy = sequelize.define('Enemy', {
   name: Sequelize.STRING,
-});
-
-export const EnemyValue = sequelize.define('enemyValue', {
-  number: Sequelize.INTEGER,
   value: Sequelize.INTEGER,
 });
 
-export const EnemyCount = sequelize.define('enemyCount', {
-  number: Sequelize.INTEGER,
-});
+export const PlayerEnemy = sequelize.define('PlayerEnemy');
 
-Enemy.hasMany(EnemyValue, { as: 'values' });
-EnemyCount.hasOne(Enemy);
-Player.hasMany(EnemyCount, { as: 'counts' });
+Player.hasMany(PlayerEnemy);
+PlayerEnemy.belongsTo(Enemy);
 
-sequelize.sync();
+const syncPromise = sequelize.sync();
 
-export default async function loadState() {
+export async function getInitialState(): State {
+  await syncPromise;
+  const enemies = await Enemy.findAll();
+  const enemyList = new Map(enemies.map(enemy => [
+    enemy.name,
+    enemy.value
+  ]));
   const players = await Player.findAll({
-    include: ['counts'],
+    include: {
+      model: PlayerEnemy,
+      include: {
+        model: Enemy,
+      }
+    }
   });
-  const enemies = await Enemy.findAll({
-    include: ['values'],
-  });
-  const playerEnemyCount = new Map(
-    players.map(
-      player => [
-        player.name,
-        new Map(
-          player.counts.map(
-            count => [
-              count.enemy.name,
-              count.number,
-            ]
-          )
-        ),
-      ]
-    )
-  );
-  const enemyList = new Map(
-    enemies.map(
-      enemy => [
-        enemy.name,
-        new List(
-          enemy.values.map(
-            value => value.number
-          )
-        ),
-      ]
-    )
-  );
-  return { playerEnemyCount, enemyList };
-}
+  const playerList = new Map(players.map(player => {
+    const score = player.PlayerEnemies.reduce(
+      (value, playerEnemy) => value + playerEnemy.Enemy.value,
+      0
+    );
+    return [
+      player.name,
+      {
+        score,
+        enemies: new Set(player.PlayerEnemies.map(
+          playerEnemy => playerEnemy.Enemy.name
+        )),
+      },
+    ];
+  }));
 
-export async function setDefaultState() {
-
+  return {
+    enemyChecklist: {
+      enemyList,
+      playerList,
+      srlPlayers: new List(),
+    },
+  };
 }

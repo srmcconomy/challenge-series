@@ -1,2 +1,200 @@
-.EnemyCounter {
-  background: #212121; }
+.EnemyChecklist {
+  background: #303030; }
+  .EnemyChecklist .header {
+    z-index: 1;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    position: fixed;
+    background: #212121;
+    width: 100%; }
+
+.EnemyChecklistIndexHeader {
+  height: 0; }
+
+.EnemyChecklistHeader {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  z-index: 1;
+  position: fixed;
+  background: #212121;
+  width: 100%;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  height: 60px;
+  -webkit-transition: top 300ms ease-in-out;
+  transition: top 300ms ease-in-out;
+  line-height: 60px; }
+  .EnemyChecklistHeader.transition-leave {
+    top: 0; }
+  .EnemyChecklistHeader.transition-enter, .EnemyChecklistHeader.transition-leave-active {
+    top: -100px; }
+  .EnemyChecklistHeader.transition-enter-active {
+    top: 0; }
+  .EnemyChecklistHeader .name {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 24px;
+    padding: 0 20px; }
+  .EnemyChecklistHeader .score {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 24px;
+    padding: 0 40px; }
+    .EnemyChecklistHeader .score .points {
+      display: inline-block;
+      width: 80px;
+      text-align: right;
+      color: white;
+      font-size: 36px; }
+
+.EnemyChecklistList {
+  padding: 60px 10px 10px 10px; }
+  .EnemyChecklistList .EnemyValueGroup .enemies {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+    flex-wrap: wrap; }
+  .EnemyChecklistList .EnemyValueGroup .value {
+    color: white;
+    font-size: 36px;
+    padding: 30px 0 0 30px; }
+
+.EnemyCard {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 150px;
+  width: 150px;
+  background-color: #424242;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 2px;
+  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center; }
+  .EnemyCard.selected {
+    background-color: #051; }
+  .EnemyCard:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+  .EnemyCard:not(.selected) {
+    -webkit-filter: grayscale(100%);
+            filter: grayscale(100%); }
+  .EnemyCard .name {
+    -webkit-user-select: none;
+            user-select: none;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    line-height: 30px;
+    text-shadow: black 1px 1px 1px, black -1px -1px 1px, black -1px 1px 1px, black 1px -1px 1px; }
+
+.EnemyChecklistIndex {
+  height: 100%;
+  width: 100%;
+  color: white;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center; }
+  .EnemyChecklistIndex .title {
+    font-size: 36px;
+    padding-bottom: 20px; }
+  .EnemyChecklistIndex .goal {
+    font-size: 24px;
+    padding-bottom: 60px; }
+  .EnemyChecklistIndex .input {
+    background: white;
+    color: black;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 -1px 0px rgba(0, 0, 0, 0.02); }
+    .EnemyChecklistIndex .input input {
+      padding: 12px;
+      border: none;
+      outline: none;
+      background: transparent; }
+    .EnemyChecklistIndex .input a {
+      padding: 12px;
+      text-decoration: inherit;
+      color: rgba(0, 0, 0, 0.8); }
+
+.EnemyChecklistLeaderboard {
+  padding: 40px;
+  height: 100%;
+  width: 100%;
+  background: #212121;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row; }
+  .EnemyChecklistLeaderboard .positions {
+    padding-left: 10px;
+    width: 20px; }
+    .EnemyChecklistLeaderboard .positions .position {
+      line-height: 40px;
+      color: gray; }
+      .EnemyChecklistLeaderboard .positions .position.n0 {
+        color: #f7e279; }
+      .EnemyChecklistLeaderboard .positions .position.n1 {
+        color: #bec7d2; }
+      .EnemyChecklistLeaderboard .positions .position.n2 {
+        color: #e09456; }
+  .EnemyChecklistLeaderboard .results {
+    margin-top: 4px;
+    -webkit-box-flex: 1;
+            flex: 1;
+    position: relative; }
+  .EnemyChecklistLeaderboard .leaderboard-entry {
+    width: 270px;
+    height: 32px;
+    display: -webkit-inline-box;
+    display: inline-flex;
+    border-radius: 16px;
+    background: #303030;
+    color: white;
+    position: absolute;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    -webkit-transition: top 0.3s ease-in-out;
+    transition: top 0.3s ease-in-out; }
+    .EnemyChecklistLeaderboard .leaderboard-entry .name {
+      -webkit-box-flex: 1;
+              flex: 1;
+      text-align: center; }
+    .EnemyChecklistLeaderboard .leaderboard-entry .score {
+      text-align: center;
+      height: 32px;
+      border-radius: 16px;
+      display: inline-block;
+      width: 50px;
+      background: #424242;
+      margin-left: 30px; }
+    .EnemyChecklistLeaderboard .leaderboard-entry .time {
+      text-align: center;
+      height: 32px;
+      border-radius: 16px;
+      display: inline-block;
+      width: 80px; }
+
+@font-face {
+  font-family: FOT-Chiaro Std;
+  src: url("/fonts/FOT-ChiaroStd-B_0.otf") format("opentype"); }
+
+body {
+  font-family: FOT-Chiaro Std;
+  margin: 0; }
