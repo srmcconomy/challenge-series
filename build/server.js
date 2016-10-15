@@ -118,7 +118,7 @@ if (process.env.NODE_ENV === 'production') {
     });
   });
 
-  server.listen(_config2.default.ports.express, () => {
+  server.listen(process.env.PORT || _config2.default.ports.express, () => {
     console.log(`Listening on port ${ _config2.default.ports.express }`);
   });
 });

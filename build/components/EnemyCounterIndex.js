@@ -45,7 +45,7 @@ let EnemyChecklistIndex = class EnemyChecklistIndex extends _react.Component {
       _react2.default.createElement(
         'div',
         { className: 'goal' },
-        'Race #3: Get 300 points by defeating enemies!'
+        'Race #3: Get at least 300 points by defeating enemies!'
       ),
       _react2.default.createElement(
         'div',

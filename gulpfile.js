@@ -33,8 +33,10 @@ let isRunningDevServer = false;
 gulp.task('build:css', () =>
   gulp.src(config.files.css.entry)
     .pipe(plumber())
-    .pipe(sass(config.build.scss))
+    .pipe(sourcemaps.init())
+    .pipe(sass(config.build.scss).on('error', sass.logError))
     .pipe(prefix(config.build.autoprefixer))
+    .pipe(sourcemaps.write())
     .pipe(size({ title: 'CSS' }))
     .pipe(gulp.dest(`${config.files.staticAssets}${config.files.css.out}`))
     .pipe(reload({ stream: true }))
@@ -150,6 +152,7 @@ gulp.task('compile', callback => {
   runSequence('clean', 'build:lint:prod', [
     'build:client:prod',
     'build:server:prod',
+    'build:css',
   ], callback);
 });
 

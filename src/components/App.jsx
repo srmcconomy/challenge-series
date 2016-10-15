@@ -1,11 +1,15 @@
 // @flow
 
-import React from 'react';
+import React, { Component } from 'react';
 
 type Props = {
   children: any
 }
 
-export default function App(props: Props) {
-  return <div>{props.children}</div>;
+export default class App extends Component {
+  props: Props;
+
+  render() {
+    return <div>{this.props.children}</div>;
+  }
 }

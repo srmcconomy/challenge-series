@@ -35,10 +35,10 @@ export default class EnemyChecklistIndex extends Component {
           Ocarina of Time Challenge Series
         </div>
         <div className="goal">
-          Race #3: Get 300 points by defeating enemies!
+          Race #3: Get at least 300 points by defeating enemies!
         </div>
         <div className="enter-your-name">
-          Enter your SRL username (make sure it's the same as it is on SRL!)
+          Enter your SRL username (make sure it&apos;s the same as it is on SRL!)
         </div>
         <div className="input">
           <input onChange={this.onChange} value={this.state.value} placeholder="username" onKeyPress={this.onKeyPress} />

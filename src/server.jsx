@@ -88,7 +88,7 @@ getInitialState().then(initialState => {
     });
   });
 
-  server.listen(config.ports.express, () => {
+  server.listen(process.env.PORT || config.ports.express, () => {
     console.log(`Listening on port ${config.ports.express}`);
   });
 });

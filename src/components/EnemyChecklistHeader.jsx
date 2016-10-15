@@ -25,6 +25,7 @@ export default class EnemyChecklistHeader extends Component {
         <div className="score">
           Score
           <span className="points">{this.props.score}</span>
+          / 300
         </div>
       </div>
     );
