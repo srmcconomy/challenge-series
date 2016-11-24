@@ -6,12 +6,17 @@ import type { Store } from 'redux';
 
 import App from '../components/App';
 import createNewPlayer from '../actions/createNewPlayer';
+import createNewKeyPlayer from '../actions/createNewKeyPlayer';
 import EnemyChecklistHeader from '../components/EnemyChecklistHeader';
 import EnemyCounter from '../components/EnemyChecklist';
 import EnemyCounterChecklist from '../components/EnemyChecklistList';
 import EnemyCounterIndex from '../components/EnemyCounterIndex';
 import EnemyChecklistLeaderboard from '../components/EnemyChecklistLeaderboard';
 import KeyCounter from '../components/KeyCounter';
+import KeyCounterIndex from '../components/KeyCounterIndex';
+import KeyCounterContainer from '../components/KeyCounterContainer';
+import KeyCounterHeader from '../components/KeyCounterHeader';
+import KeyCounterLeaderboard from '../components/KeyCounterLeaderboard';
 
 export default function (store: Store) {
   function onPlayerEnter(nextState) {
@@ -21,28 +26,35 @@ export default function (store: Store) {
     }
   }
 
+  function onKeyPlayerEnter(nextState) {
+    const { name } = nextState.params;
+    if (!store.getState().keyCounter.has(name)) {
+      store.dispatch(createNewKeyPlayer(name));
+    }
+  }
+
   return (
     <Route component={App} path="/">
-      <Route component={EnemyCounter} path="key-counter">
+      <Route component={KeyCounterContainer} path="key-counter">
         <IndexRoute
           components={{
             header: () => <div />,
-            body: EnemyCounterIndex,
+            body: KeyCounterIndex,
           }}
         />
         <Route
           path="user/:name"
           components={{
-            header: EnemyChecklistHeader,
+            header: KeyCounterHeader,
             body: KeyCounter,
           }}
-          onEnter={onPlayerEnter}
+          onEnter={onKeyPlayerEnter}
         />
         <Route
           path="leaderboard"
           components={{
             header: null,
-            body: EnemyChecklistLeaderboard,
+            body: KeyCounterLeaderboard,
           }}
         />
       </Route>

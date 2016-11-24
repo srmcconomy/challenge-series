@@ -34,12 +34,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const socket = (0, _socket2.default)();
 
+const keyCounter = new _immutable.Map(window.PRELOADED_STATE.keyCounter);
+
 const playerList = new _immutable.Map(Object.keys(window.PRELOADED_STATE.enemyChecklist.playerList).map(name => [name, {
   score: window.PRELOADED_STATE.enemyChecklist.playerList[name].score,
   enemies: new _immutable.Set(window.PRELOADED_STATE.enemyChecklist.playerList[name].enemies)
 }]));
 
 const preloadedState = {
+  keyCounter,
   enemyChecklist: {
     playerList,
     enemyList: new _immutable.Map(window.PRELOADED_STATE.enemyChecklist.enemyList),

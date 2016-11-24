@@ -12,31 +12,38 @@ exports.default = function (store) {
     }
   }
 
+  function onKeyPlayerEnter(nextState) {
+    const { name } = nextState.params;
+    if (!store.getState().keyCounter.has(name)) {
+      store.dispatch((0, _createNewKeyPlayer2.default)(name));
+    }
+  }
+
   return _react2.default.createElement(
     _reactRouter.Route,
     { component: _App2.default, path: '/' },
     _react2.default.createElement(
       _reactRouter.Route,
-      { component: _EnemyChecklist2.default, path: 'key-counter' },
+      { component: _KeyCounterContainer2.default, path: 'key-counter' },
       _react2.default.createElement(_reactRouter.IndexRoute, {
         components: {
           header: () => _react2.default.createElement('div', null),
-          body: _EnemyCounterIndex2.default
+          body: _KeyCounterIndex2.default
         }
       }),
       _react2.default.createElement(_reactRouter.Route, {
         path: 'user/:name',
         components: {
-          header: _EnemyChecklistHeader2.default,
+          header: _KeyCounterHeader2.default,
           body: _KeyCounter2.default
         },
-        onEnter: onPlayerEnter
+        onEnter: onKeyPlayerEnter
       }),
       _react2.default.createElement(_reactRouter.Route, {
         path: 'leaderboard',
         components: {
           header: null,
-          body: _EnemyChecklistLeaderboard2.default
+          body: _KeyCounterLeaderboard2.default
         }
       })
     ),
@@ -82,6 +89,10 @@ var _createNewPlayer = require('../actions/createNewPlayer');
 
 var _createNewPlayer2 = _interopRequireDefault(_createNewPlayer);
 
+var _createNewKeyPlayer = require('../actions/createNewKeyPlayer');
+
+var _createNewKeyPlayer2 = _interopRequireDefault(_createNewKeyPlayer);
+
 var _EnemyChecklistHeader = require('../components/EnemyChecklistHeader');
 
 var _EnemyChecklistHeader2 = _interopRequireDefault(_EnemyChecklistHeader);
@@ -105,6 +116,22 @@ var _EnemyChecklistLeaderboard2 = _interopRequireDefault(_EnemyChecklistLeaderbo
 var _KeyCounter = require('../components/KeyCounter');
 
 var _KeyCounter2 = _interopRequireDefault(_KeyCounter);
+
+var _KeyCounterIndex = require('../components/KeyCounterIndex');
+
+var _KeyCounterIndex2 = _interopRequireDefault(_KeyCounterIndex);
+
+var _KeyCounterContainer = require('../components/KeyCounterContainer');
+
+var _KeyCounterContainer2 = _interopRequireDefault(_KeyCounterContainer);
+
+var _KeyCounterHeader = require('../components/KeyCounterHeader');
+
+var _KeyCounterHeader2 = _interopRequireDefault(_KeyCounterHeader);
+
+var _KeyCounterLeaderboard = require('../components/KeyCounterLeaderboard');
+
+var _KeyCounterLeaderboard2 = _interopRequireDefault(_KeyCounterLeaderboard);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //# sourceMappingURL=routes.js.map

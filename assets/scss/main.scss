@@ -1,4 +1,5 @@
 @import 'enemyChecklist';
+@import 'keyCounter';
 
 @font-face {
   font-family: FOT-Chiaro Std;
@@ -8,4 +9,5 @@
 body {
   font-family: FOT-Chiaro Std;
   margin: 0;
+  background: #303030;
 }

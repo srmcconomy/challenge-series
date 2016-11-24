@@ -14,6 +14,8 @@ import routes from './util/routes';
 
 const socket = io();
 
+const keyCounter = new Map(window.PRELOADED_STATE.keyCounter);
+
 const playerList = new Map(Object.keys(
   window.PRELOADED_STATE.enemyChecklist.playerList
 ).map(name => [
@@ -25,6 +27,7 @@ const playerList = new Map(Object.keys(
 ]));
 
 const preloadedState = {
+  keyCounter,
   enemyChecklist: {
     playerList,
     enemyList: new Map(window.PRELOADED_STATE.enemyChecklist.enemyList),
