@@ -11,6 +11,7 @@ import EnemyCounter from '../components/EnemyChecklist';
 import EnemyCounterChecklist from '../components/EnemyChecklistList';
 import EnemyCounterIndex from '../components/EnemyCounterIndex';
 import EnemyChecklistLeaderboard from '../components/EnemyChecklistLeaderboard';
+import KeyCounter from '../components/KeyCounter';
 
 export default function (store: Store) {
   function onPlayerEnter(nextState) {
@@ -22,6 +23,30 @@ export default function (store: Store) {
 
   return (
     <Route component={App} path="/">
+      <Route component={EnemyCounter} path="key-counter">
+        <IndexRoute
+          components={{
+            header: () => <div />,
+            body: EnemyCounterIndex,
+          }}
+        />
+        <Route
+          path="user/:name"
+          components={{
+            header: EnemyChecklistHeader,
+            body: KeyCounter,
+          }}
+          onEnter={onPlayerEnter}
+        />
+        <Route
+          path="leaderboard"
+          components={{
+            header: null,
+            body: EnemyChecklistLeaderboard,
+          }}
+        />
+      </Route>
+
       <Route component={EnemyCounter} path="enemy-counter">
         <IndexRoute
           components={{

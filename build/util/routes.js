@@ -17,6 +17,31 @@ exports.default = function (store) {
     { component: _App2.default, path: '/' },
     _react2.default.createElement(
       _reactRouter.Route,
+      { component: _EnemyChecklist2.default, path: 'key-counter' },
+      _react2.default.createElement(_reactRouter.IndexRoute, {
+        components: {
+          header: () => _react2.default.createElement('div', null),
+          body: _EnemyCounterIndex2.default
+        }
+      }),
+      _react2.default.createElement(_reactRouter.Route, {
+        path: 'user/:name',
+        components: {
+          header: _EnemyChecklistHeader2.default,
+          body: _KeyCounter2.default
+        },
+        onEnter: onPlayerEnter
+      }),
+      _react2.default.createElement(_reactRouter.Route, {
+        path: 'leaderboard',
+        components: {
+          header: null,
+          body: _EnemyChecklistLeaderboard2.default
+        }
+      })
+    ),
+    _react2.default.createElement(
+      _reactRouter.Route,
       { component: _EnemyChecklist2.default, path: 'enemy-counter' },
       _react2.default.createElement(_reactRouter.IndexRoute, {
         components: {
@@ -76,6 +101,10 @@ var _EnemyCounterIndex2 = _interopRequireDefault(_EnemyCounterIndex);
 var _EnemyChecklistLeaderboard = require('../components/EnemyChecklistLeaderboard');
 
 var _EnemyChecklistLeaderboard2 = _interopRequireDefault(_EnemyChecklistLeaderboard);
+
+var _KeyCounter = require('../components/KeyCounter');
+
+var _KeyCounter2 = _interopRequireDefault(_KeyCounter);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //# sourceMappingURL=routes.js.map
