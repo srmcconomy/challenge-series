@@ -42,7 +42,7 @@ export default class KeyCounterIndex extends Component {
         </div>
         <div className="input">
           <input onChange={this.onChange} value={this.state.value} placeholder="username" onKeyPress={this.onKeyPress} />
-          <Link className="link" to={`/enemy-counter/user/${this.state.value}`}>GO</Link>
+          <Link className="link" to={`/key-counter/user/${this.state.value}`}>GO</Link>
         </div>
       </div>
     );
