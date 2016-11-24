@@ -1,0 +1,263 @@
+.EnemyChecklist {
+  background: #303030;
+  .header {
+    z-index: 1;
+    transition: 0.3s ease;
+    position: fixed;
+    background: #212121;
+    width: 100%;
+  }
+}
+
+.EnemyChecklistIndexHeader {
+  height: 0;
+}
+
+.EnemyChecklistHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 1;
+  position: fixed;
+  background: #212121;
+  width: 100%;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  height: 60px;
+  transition: top 300ms ease-in-out;
+  line-height: 60px;
+  &.transition-leave {
+    top: 0;
+  }
+  &.transition-enter, &.transition-leave-active {
+    top: -100px;
+  }
+  &.transition-enter-active {
+    top: 0;
+  }
+
+  .name {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 24px;
+    padding: 0 20px;
+  }
+
+  .score {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 24px;
+    padding: 0 40px;
+    .points {
+      display: inline-block;
+      width: 80px;
+      text-align: right;
+      color: white;
+      font-size: 36px;
+    }
+  }
+}
+
+.EnemyChecklistList {
+  padding: 60px 10px 10px 10px;
+
+  .EnemyValueGroup {
+    .enemies {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .value {
+      color: white;
+      font-size: 36px;
+      padding: 30px 0 0 30px;
+    }
+  }
+}
+
+.KeyCounterContainer {
+  .body {
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.KeyCard {
+
+  height: 100px;
+  width: 350px;
+  background-color: #424242;
+  padding: 5px;
+  margin: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+
+  .key-image {
+    background-image: url('/images/smallkey.png');
+    height: 64px;
+    width: 64px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 30px;
+  }
+
+  .key {
+    font-size: 24px;
+    color: rgba(255,255,255,0.8);
+
+    .num {
+      font-size: 36px;
+      color: white;
+      width: 50px;
+      text-align: right;
+      display: inline-block;
+      margin: 0 5px;
+    }
+
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    margin: 0 20px;
+    align-items: center;
+    cursor: pointer;
+
+    .button {
+      margin: 0 5px;
+      height: 30px;
+      width: 30px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      &:hover {
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+      }
+
+      &.big {
+        line-height: 45px;
+        height: 45px;
+        width: 45px;
+      }
+    }
+  }
+}
+
+.EnemyChecklistIndex {
+  height: 100%;
+  width: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .title {
+    font-size: 36px;
+    padding-bottom: 20px;
+  }
+
+  .goal {
+    font-size: 24px;
+    padding-bottom: 60px;
+  }
+
+  .input {
+    input {
+      padding: 12px;
+      border: none;
+      outline: none;
+      background: transparent;
+    }
+
+    a {
+      padding: 12px;
+      text-decoration: inherit;
+      color: rgba(0,0,0,0.8);
+    }
+
+    background: white;
+    color: black;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
+  }
+}
+
+.EnemyChecklistLeaderboard {
+  padding: 40px;
+  height: 100%;
+  width: 100%;
+  background: #212121;
+  display: flex;
+  flex-direction: row;
+
+  .positions {
+    padding-left: 10px;
+    width: 20px;
+
+    .position {
+      line-height: 40px;
+      color: rgb(128, 128, 128);
+
+      &.n0 {
+        color: rgb(247, 226, 121);
+      }
+      &.n1 {
+        color: rgb(190, 199, 210);
+      }
+      &.n2 {
+        color: rgb(224, 148, 86);
+      }
+    }
+  }
+
+  .results {
+    margin-top: 4px;
+    flex: 1;
+    position: relative;
+  }
+
+  .leaderboard-entry {
+    width: 270px;
+    height: 32px;
+    display: inline-flex;
+    border-radius: 16px;
+    background: #303030;
+    color: white;
+    position: absolute;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: top 0.3s ease-in-out;
+
+    .name {
+      flex: 1;
+      text-align: center;
+    }
+
+    .score {
+      text-align: center;
+      height: 32px;
+      border-radius: 16px;
+      display: inline-block;
+      width: 50px;
+      background: #424242;
+      margin-left: 30px;
+    }
+
+    .time {
+      text-align: center;
+      height: 32px;
+      border-radius: 16px;
+      display: inline-block;
+      width: 80px;
+      // background: #424242;
+    }
+  }
+}
