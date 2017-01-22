@@ -19,6 +19,8 @@
   }
 }
 
+
+
 .double-defense {
   background: #535353;
   border-radius: 2px;
@@ -70,6 +72,26 @@
   .item {
     margin: 8px;
   }
+}
+
+.nuts {
+  position: absolute;
+  bottom: 20px;
+  left: 180px;
+  .item {
+    margin: 8px;
+  }
+
+}
+
+.sticks {
+  position: absolute;
+  bottom: 90px;
+  left: 180px;
+  .item {
+    margin: 8px;
+  }
+
 }
 
 .heart {

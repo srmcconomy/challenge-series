@@ -83,6 +83,14 @@ export default class HeartsDisplay extends Component {
             <Item name="adults-wallet" player={this.props.name} />
             <Item name="giants-wallet" player={this.props.name} />
           </div>
+          <div className="nuts row">
+            <Item name="deku-nut-30" image="deku-nut" label="30" player={this.props.name} />
+            <Item name="deku-nut-40" image="deku-nut" label="40" player={this.props.name} />
+          </div>
+          <div className="sticks row">
+            <Item name="deku-stick-20" image="deku-stick" label="20" player={this.props.name} />
+            <Item name="deku-stick-30" image="deku-stick" label="30" player={this.props.name} />
+          </div>
         </div>
         <div className="map-table">
           <div className="row">
