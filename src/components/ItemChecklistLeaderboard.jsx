@@ -13,7 +13,6 @@ function convertTime(time: number): string {
 }))
 export default class EnemyChecklistLeaderboard extends Component {
   render() {
-    console.log(this.props.srlPlayers);
     const entries = this.props.playerList.keySeq().map(
       name => {
         const srlPlayer = this.props.srlPlayers.find(

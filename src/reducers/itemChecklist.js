@@ -123,7 +123,6 @@ export default function itemChecklist(
       };
 
     case 'create-new-item-player':
-    console.log('yo')
       return {
         ...state,
         playerList: state.playerList.set(

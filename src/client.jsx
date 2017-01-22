@@ -54,6 +54,8 @@ const preloadedState = {
 const store = createStore(reducers, preloadedState, applyMiddleware(socketMiddleware(socket)));
 connectStoreWithSocket(store, socket);
 
+console.log('%c asdf', 'padding: 170px; font-size: 1px; line-height: 340px; background-image: url("http://i3.kym-cdn.com/photos/images/newsfeed/000/925/494/218.png_large"); background-size: 340px 340px;');
+
 ReactDOM.render(
   <Provider store={store}>
     <Router routes={routes(store)} history={browserHistory} />

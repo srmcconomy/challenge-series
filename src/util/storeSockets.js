@@ -21,7 +21,6 @@ export function socketMiddleware(socket: any) {
 
 export function connectStoreWithSocket(store: Store<State, Action>, socket: any) {
   socket.on('action', action => {
-    console.log(action);
     store.dispatch({
       ...action,
       type: `socket-${action.type}`,
