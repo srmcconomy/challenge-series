@@ -149,10 +149,10 @@ button {
 }
 
 .ItemChecklistList {
-  padding-top: 60px;
+  padding: 60px;
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: calc(100% - 120px);
   justify-content: center;
   color: white;
 }
