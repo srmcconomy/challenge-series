@@ -26,6 +26,18 @@ const playerList = new Map(Object.keys(
   },
 ]));
 
+const itemPlayers = new Map(Object.keys(
+  window.PRELOADED_STATE.itemChecklist.playerList
+).map(name => [
+  name,
+  {
+    score: window.PRELOADED_STATE.itemChecklist.playerList[name].score,
+    hearts: window.PRELOADED_STATE.itemChecklist.playerList[name].hearts,
+    rupees: window.PRELOADED_STATE.itemChecklist.playerList[name].rupees,
+    items: new Set(window.PRELOADED_STATE.itemChecklist.playerList[name].items),
+  }
+]));
+
 const preloadedState = {
   keyCounter,
   enemyChecklist: {
@@ -33,6 +45,10 @@ const preloadedState = {
     enemyList: new Map(window.PRELOADED_STATE.enemyChecklist.enemyList),
     srlPlayers: new List(window.PRELOADED_STATE.enemyChecklist.srlPlayers),
   },
+  itemChecklist: {
+    playerList: itemPlayers,
+    srlPlayers: new List(window.PRELOADED_STATE.itemChecklist.srlPlayers),
+  }
 };
 
 const store = createStore(reducers, preloadedState, applyMiddleware(socketMiddleware(socket)));

@@ -19,6 +19,13 @@ exports.default = function (store) {
     }
   }
 
+  function onItemPlayerEnter(nextState) {
+    const { name } = nextState.params;
+    if (!store.getState().itemChecklist.playerList.has(name)) {
+      store.dispatch((0, _createNewItemPlayer2.default)(name));
+    }
+  }
+
   return _react2.default.createElement(
     _reactRouter.Route,
     { component: _App2.default, path: '/' },
@@ -71,6 +78,31 @@ exports.default = function (store) {
           body: _EnemyChecklistLeaderboard2.default
         }
       })
+    ),
+    _react2.default.createElement(
+      _reactRouter.Route,
+      { component: _ItemChecklist2.default, path: 'item-counter' },
+      _react2.default.createElement(_reactRouter.IndexRoute, {
+        components: {
+          header: () => _react2.default.createElement('div', null),
+          body: _ItemChecklistIndex2.default
+        }
+      }),
+      _react2.default.createElement(_reactRouter.Route, {
+        path: 'user/:name',
+        components: {
+          header: _ItemChecklistHeader2.default,
+          body: _ItemChecklistList2.default
+        },
+        onEnter: onItemPlayerEnter
+      }),
+      _react2.default.createElement(_reactRouter.Route, {
+        path: 'leaderboard',
+        components: {
+          header: null,
+          body: _ItemChecklistLeaderboard2.default
+        }
+      })
     )
   );
 };
@@ -92,6 +124,30 @@ var _createNewPlayer2 = _interopRequireDefault(_createNewPlayer);
 var _createNewKeyPlayer = require('../actions/createNewKeyPlayer');
 
 var _createNewKeyPlayer2 = _interopRequireDefault(_createNewKeyPlayer);
+
+var _createNewItemPlayer = require('../actions/createNewItemPlayer');
+
+var _createNewItemPlayer2 = _interopRequireDefault(_createNewItemPlayer);
+
+var _ItemChecklistHeader = require('../components/ItemChecklistHeader');
+
+var _ItemChecklistHeader2 = _interopRequireDefault(_ItemChecklistHeader);
+
+var _ItemChecklist = require('../components/ItemChecklist');
+
+var _ItemChecklist2 = _interopRequireDefault(_ItemChecklist);
+
+var _ItemChecklistList = require('../components/ItemChecklistList');
+
+var _ItemChecklistList2 = _interopRequireDefault(_ItemChecklistList);
+
+var _ItemChecklistIndex = require('../components/ItemChecklistIndex');
+
+var _ItemChecklistIndex2 = _interopRequireDefault(_ItemChecklistIndex);
+
+var _ItemChecklistLeaderboard = require('../components/ItemChecklistLeaderboard');
+
+var _ItemChecklistLeaderboard2 = _interopRequireDefault(_ItemChecklistLeaderboard);
 
 var _EnemyChecklistHeader = require('../components/EnemyChecklistHeader');
 

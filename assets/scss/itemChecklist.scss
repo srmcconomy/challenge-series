@@ -1,0 +1,270 @@
+
+
+.item {
+  height: 64px;
+  width: 64px;
+  background-size: cover;
+  cursor: pointer;
+  font-size: 24px;
+  text-align: center;
+  text-shadow: 0 3px 6px black, 0 3px 6px black;
+
+  &:not(.selected) {
+    filter: grayscale(80%);
+    opacity: 0.5;
+  }
+  &.small {
+    height: 32px;
+    width: 32px;
+  }
+}
+
+.double-defense {
+  background: #535353;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  cursor: pointer;
+  width: 150px;
+  text-align: center;
+  margin: 20px;
+  &.selected {
+    background: #051;
+  }
+}
+
+.HeartsDisplay {
+  position: relative;
+  height: 400px;
+  width: 600px;
+  border-radius: 2px;
+  margin: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background: #424242;
+  display: flex;
+}
+
+.hearts {
+  padding-left: 20px;
+  padding-top: 20px;
+  height: 48px;
+  width: 240px;
+}
+
+.hearts-container button {
+  margin-top: 20px;
+}
+
+.rupee-count {
+  width: 50px;
+}
+
+.rupees {
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.wallets {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  .item {
+    margin: 8px;
+  }
+}
+
+.heart {
+  height: 24px;
+  width: 24px;
+  background-image: url(/images/heart.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.spacer-32 {
+  width: 32px;
+  height: 32px;
+}
+
+button {
+  height: 32px;
+  width: 32px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: #535353;
+  border: none;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.magic {
+  background-image: url(/images/magic.png);
+  height: 33px;
+  width: 133px;
+  background-size: contain;
+  position: absolute;
+  &:not(.selected) {
+    display: none;
+  }
+}
+
+.double-magic {
+  background-image: url(/images/double-magic.png);
+  height: 33px;
+  width: 253px;
+  background-size: contain;
+  position: absolute;
+  &:not(.selected) {
+    filter: grayscale(80%);
+    opacity: 0.5;
+  }
+}
+
+.magic-display {
+  position: relative;
+  cursor: pointer;
+  height: 44px;
+  margin-left: 12px;
+}
+
+.ItemChecklistList {
+  padding-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  color: white;
+}
+
+.map-table {
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.row {
+  display: flex;
+}
+.status {
+border-radius: 2px;
+margin: 10px;
+box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+background: #424242;
+  position: relative;
+  height: 400px;
+  width: 600px;
+  background-size: cover;
+  // background-image: url(/images/status.png);
+  .misc {
+    position: absolute;
+    top:50px;
+    left:20px;
+  }
+  .medallions {
+    position: absolute;
+    height: 255px;
+    width: 230px;
+    top: 45px;
+    right: 40px;
+    div {
+      position: absolute;
+    }
+    .light {
+      top: 10px;
+      left: 82px;
+    }
+    .forest {
+      top: 54px;
+      right: 80px;
+    }
+    .fire {
+      top: 135px;
+      right: 80px;
+    }
+    .water {
+      top: 180px;
+      left: 82px;
+    }
+    .shadow {
+      top: 135px;
+      left: 13px;
+    }
+    .spirit {
+      top: 54px;
+      left: 13px;
+    }
+  }
+  .songs {
+    position: absolute;
+    top: 190px;
+    left: 30px;
+    .item {
+      margin: -5 -10px ;
+    }
+  }
+  .stones {
+    position: absolute;
+    bottom: 23px;
+    right: 60px;
+  }
+}
+
+.inventory {
+border-radius: 2px;
+margin: 10px;
+box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+background: #424242;
+  position: relative;
+  height: 400px;
+  width: 600px;
+  // background-image: url(/images/inventory.jpg);
+  background-size: contain;
+  .container {
+    padding: 50px 0 0 60px;
+  }
+  .item {
+    margin: 8px;
+  }
+}
+
+.rupee {
+  height: 32px;
+  width: 32px;
+  background-image: url(/images/rupee.png);
+  background-size: contain;
+}
+
+.equipment {
+  border-radius: 2px;
+  margin: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background: #424242;
+  position: relative;
+  height: 400px;
+  width: 600px;
+  // background-image: url(/images/equipment.jpg);
+  background-size: contain;
+  .equipment-left {
+    position: absolute;
+    top: 0px;
+    left: 20px;
+  }
+  .equipment-right {
+    position: absolute;
+    top: 55px;
+    right: 30px;
+  }
+  .item {
+    margin: 8px;
+  }
+}
+
+.inventory-row {
+  display: flex;
+}
+
+.equipment-row {
+  display: flex;
+}

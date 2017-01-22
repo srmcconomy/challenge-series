@@ -41,12 +41,23 @@ const playerList = new _immutable.Map(Object.keys(window.PRELOADED_STATE.enemyCh
   enemies: new _immutable.Set(window.PRELOADED_STATE.enemyChecklist.playerList[name].enemies)
 }]));
 
+const itemPlayers = new _immutable.Map(Object.keys(window.PRELOADED_STATE.itemChecklist.playerList).map(name => [name, {
+  score: window.PRELOADED_STATE.itemChecklist.playerList[name].score,
+  hearts: window.PRELOADED_STATE.itemChecklist.playerList[name].hearts,
+  rupees: window.PRELOADED_STATE.itemChecklist.playerList[name].rupees,
+  items: new _immutable.Set(window.PRELOADED_STATE.itemChecklist.playerList[name].items)
+}]));
+
 const preloadedState = {
   keyCounter,
   enemyChecklist: {
     playerList,
     enemyList: new _immutable.Map(window.PRELOADED_STATE.enemyChecklist.enemyList),
     srlPlayers: new _immutable.List(window.PRELOADED_STATE.enemyChecklist.srlPlayers)
+  },
+  itemChecklist: {
+    playerList: itemPlayers,
+    srlPlayers: new _immutable.List(window.PRELOADED_STATE.itemChecklist.srlPlayers)
   }
 };
 

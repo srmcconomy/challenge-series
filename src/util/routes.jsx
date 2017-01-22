@@ -7,6 +7,12 @@ import type { Store } from 'redux';
 import App from '../components/App';
 import createNewPlayer from '../actions/createNewPlayer';
 import createNewKeyPlayer from '../actions/createNewKeyPlayer';
+import createNewItemPlayer from '../actions/createNewItemPlayer';
+import ItemChecklistHeader from '../components/ItemChecklistHeader';
+import ItemChecklist from '../components/ItemChecklist';
+import ItemChecklistList from '../components/ItemChecklistList';
+import ItemChecklistIndex from '../components/ItemChecklistIndex';
+import ItemChecklistLeaderboard from '../components/ItemChecklistLeaderboard';
 import EnemyChecklistHeader from '../components/EnemyChecklistHeader';
 import EnemyCounter from '../components/EnemyChecklist';
 import EnemyCounterChecklist from '../components/EnemyChecklistList';
@@ -30,6 +36,13 @@ export default function (store: Store) {
     const { name } = nextState.params;
     if (!store.getState().keyCounter.has(name)) {
       store.dispatch(createNewKeyPlayer(name));
+    }
+  }
+
+  function onItemPlayerEnter(nextState) {
+    const { name } = nextState.params;
+    if (!store.getState().itemChecklist.playerList.has(name)) {
+      store.dispatch(createNewItemPlayer(name));
     }
   }
 
@@ -79,6 +92,30 @@ export default function (store: Store) {
           components={{
             header: null,
             body: EnemyChecklistLeaderboard,
+          }}
+        />
+      </Route>
+
+      <Route component={ItemChecklist} path="item-counter">
+        <IndexRoute
+          components={{
+            header: () => <div />,
+            body: ItemChecklistIndex,
+          }}
+        />
+        <Route
+          path="user/:name"
+          components={{
+            header: ItemChecklistHeader,
+            body: ItemChecklistList,
+          }}
+          onEnter={onItemPlayerEnter}
+        />
+        <Route
+          path="leaderboard"
+          components={{
+            header: null,
+            body: ItemChecklistLeaderboard,
           }}
         />
       </Route>

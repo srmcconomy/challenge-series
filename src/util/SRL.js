@@ -11,7 +11,7 @@ export default function (store) {
       });
       res.on('end', () => {
         const { races } = JSON.parse(body);
-        const playerList = store.getState().keyCounter;
+        const playerList = store.getState().itemChecklist.playerList;
         console.log(playerList);
         if (playerList.size > 0) {
           console.log(races);
