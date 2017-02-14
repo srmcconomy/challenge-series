@@ -34,6 +34,14 @@ var _http = require('http');
 
 var _http2 = _interopRequireDefault(_http);
 
+var _request = require('request');
+
+var _request2 = _interopRequireDefault(_request);
+
+var _cookieParser = require('cookie-parser');
+
+var _cookieParser2 = _interopRequireDefault(_cookieParser);
+
 var _storeSockets = require('./util/storeSockets');
 
 var _config = require('../config');
@@ -66,6 +74,7 @@ const io = (0, _socket2.default)(server);
 app.use('/assets/', _express2.default.static(_path2.default.join(__dirname, '../build/static')));
 app.use('/images/', _express2.default.static(_path2.default.join(__dirname, '../assets/images')));
 app.use('/fonts/', _express2.default.static(_path2.default.join(__dirname, '../assets/fonts')));
+app.use((0, _cookieParser2.default)());
 
 let jsFile;
 if (process.env.NODE_ENV === 'production') {
@@ -79,9 +88,12 @@ const store = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddle
 (0, _SRL2.default)(store);
 
 app.use((req, res) => {
-  (0, _reactRouter.match)({ routes: (0, _routes2.default)(store), location: req.url }, (error, redirectLocation, renderProps) => {
+  const token = req.cookies.token;
+
+  (0, _reactRouter.match)({ routes: (0, _routes2.default)(store, token, _request2.default), location: req.url }, (error, redirectLocation, renderProps) => {
     if (redirectLocation) {
-      res.redirect(301, redirectLocation.pathname + redirectLocation.search);
+      console.log('redirect');
+      res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (error) {
       console.log(error);
       res.status(500).send('An internal error has occurred');
@@ -99,7 +111,7 @@ app.use((req, res) => {
             </head>
             <body>
               <div id="react-root">${ content }</div>
-              <script>window.PRELOADED_STATE = ${ JSON.stringify(store.getState()) }</script>
+              <script>window.PRELOADED_STATE=${ JSON.stringify(store.getState()) };</script>
               <script async defer src="${ jsFile }"></script>
             </body>
           </html>`);

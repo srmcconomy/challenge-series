@@ -15,6 +15,9 @@ import routes from './util/routes';
 const socket = io();
 
 const keyCounter = new Map(window.PRELOADED_STATE.keyCounter);
+const token = window.TOKEN;
+
+const pl = new Map(window.PRELOADED_STATE.players);
 
 const playerList = new Map(Object.keys(
   window.PRELOADED_STATE.enemyChecklist.playerList
@@ -38,6 +41,18 @@ const itemPlayers = new Map(Object.keys(
   }
 ]));
 
+const childPlayers = new Map(Object.keys(
+  window.PRELOADED_STATE.childChecklist.playerList
+).map(name => [
+  name,
+  {
+    score: window.PRELOADED_STATE.childChecklist.playerList[name].score,
+    hearts: window.PRELOADED_STATE.childChecklist.playerList[name].hearts,
+    rupees: window.PRELOADED_STATE.childChecklist.playerList[name].rupees,
+    items: new Set(window.PRELOADED_STATE.childChecklist.playerList[name].items),
+  }
+]));
+
 const preloadedState = {
   keyCounter,
   enemyChecklist: {
@@ -48,17 +63,23 @@ const preloadedState = {
   itemChecklist: {
     playerList: itemPlayers,
     srlPlayers: new List(window.PRELOADED_STATE.itemChecklist.srlPlayers),
+  },
+  players: pl,
+  childChecklist: {
+    playerList: childPlayers,
+    srlPlayers: new List(window.PRELOADED_STATE.childChecklist.srlPlayers),
   }
 };
 
 const store = createStore(reducers, preloadedState, applyMiddleware(socketMiddleware(socket)));
-connectStoreWithSocket(store, socket);
 
+connectStoreWithSocket(store, socket);
 console.log('%c asdf', 'padding: 170px; font-size: 1px; line-height: 340px; background-image: url("http://i3.kym-cdn.com/photos/images/newsfeed/000/925/494/218.png_large"); background-size: 340px 340px;');
 
+const cookie = /[^\s=]+=([^\s]+)/.exec(document.cookie);
 ReactDOM.render(
   <Provider store={store}>
-    <Router routes={routes(store)} history={browserHistory} />
+    <Router routes={routes(store, cookie ? cookie[1] : null, null)} history={browserHistory} />
   </Provider>,
   document.getElementById('react-root')
 );

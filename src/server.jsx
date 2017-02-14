@@ -12,6 +12,8 @@ import path from 'path';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import http from 'http';
+import request from 'request';
+import cookieParser from 'cookie-parser';
 
 import { socketMiddleware, connectStoreWithSocket } from './util/storeSockets';
 import config from '../config';
@@ -30,6 +32,7 @@ const io = socketio(server);
 app.use('/assets/', express.static(path.join(__dirname, '../build/static')));
 app.use('/images/', express.static(path.join(__dirname, '../assets/images')));
 app.use('/fonts/', express.static(path.join(__dirname, '../assets/fonts')));
+app.use(cookieParser());
 
 let jsFile;
 if (process.env.NODE_ENV === 'production') {
@@ -46,11 +49,14 @@ const store = createStore(
 srl(store);
 
 app.use((req, res) => {
+  const token = req.cookies.token;
+
   match(
-    { routes: routes(store), location: req.url },
+    { routes: routes(store, token, request), location: req.url },
     (error, redirectLocation, renderProps) => {
       if (redirectLocation) {
-        res.redirect(301, redirectLocation.pathname + redirectLocation.search);
+        console.log('redirect')
+        res.redirect(302, redirectLocation.pathname + redirectLocation.search);
       } else if (error) {
         console.log(error);
         res.status(500).send('An internal error has occurred');
@@ -69,7 +75,7 @@ app.use((req, res) => {
             </head>
             <body>
               <div id="react-root">${content}</div>
-              <script>window.PRELOADED_STATE = ${JSON.stringify(store.getState())}</script>
+              <script>window.PRELOADED_STATE=${JSON.stringify(store.getState())};</script>
               <script async defer src="${jsFile}"></script>
             </body>
           </html>`

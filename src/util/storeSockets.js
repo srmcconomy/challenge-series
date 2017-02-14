@@ -10,10 +10,12 @@ type SocketAction = {
 export function socketMiddleware(socket: any) {
   return () => (next: (action: Action) => null) => (action: SocketAction) => {
     const newAction = action;
-    if (newAction.type.startsWith('socket-')) {
-      newAction.type = newAction.type.replace('socket-', '');
-    } else {
-      socket.emit('action', newAction);
+    if (action.type !== 'set-token') {
+      if (newAction.type.startsWith('socket-')) {
+        newAction.type = newAction.type.replace('socket-', '');
+      } else {
+        socket.emit('action', newAction);
+      }
     }
     next(newAction);
   };

@@ -12,3 +12,144 @@ body {
   margin: 0;
   background: #303030;
 }
+
+.twitch-auth {
+  text-align: center;
+  margin: 60px;
+}
+
+.twitch-button {
+  background: #6441A4;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  padding: 0 20px;
+  color: white;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: 200ms ease-in-out;
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+  cursor: pointer;
+
+}
+
+.containerthing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.popout {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.Validate {
+  color: rgba(255,255,255,0.8);
+  text-align: center;
+  margin: 60px;
+  .join-button {
+    background: #424242;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    padding: 0 20px;
+    color: white;
+    border-radius: 2px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: 200ms ease-in-out;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+
+  }
+}
+
+.popout-button {
+  background: #424242;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  padding: 0 20px;
+  color: white;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: 200ms ease-in-out;
+  margin-top: 100px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+
+}
+
+
+.popout .header {
+  display: flex;
+  flex-direction: row;
+  background: #212121;
+  justify-content: space-between;
+  color: rgba(255,255,255,0.8);
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+
+  .score {
+
+    margin: 0 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .number {
+      color: white;
+      width: 40px;
+      text-align: right;
+      font-size: 24px;
+    }
+  }
+}
+
+.ChildChecklistList {
+  .containerthing:not(.popout) & {
+    padding-top: 80px;
+  }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  .titles {
+    margin-right: 20px;
+  }
+  .containerthing:not(.popout) & {
+    .place-name {
+      line-height: 80px;
+      height: 80px;
+    }
+  }
+  .spacer-64 {
+    height: 64px;
+    width: 64px;
+  }
+  .containerthing:not(.popout) & {
+    .items .row {
+      margin: 8px 0;
+    }
+  }
+  .popout & .place-name {
+    font-size: 16px;
+    line-height: 16px;
+    padding-top: 10px;
+  }
+  .items {
+    display: flex;
+    flex-direction: column;
+  }
+  color: rgba(255,255,255,0.8);
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
