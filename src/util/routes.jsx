@@ -17,6 +17,8 @@ import ChildChecklistList from '../components/ChildChecklistList';
 import Validate from '../components/Validate';
 import createNewChildPlayer from '../actions/createNewChildPlayer';
 import ChildPopout from '../components/ChildPopout';
+import ChildChecklistLeaderboard from '../components/ChildChecklistLeaderboard';
+import ChildChecklistFinalsLeaderboard from '../components/ChildChecklistFinalsLeaderboard';
 // import createNewPlayer from '../actions/createNewPlayer';
 // import createNewKeyPlayer from '../actions/createNewKeyPlayer';
 // import createNewItemPlayer from '../actions/createNewItemPlayer';
@@ -64,7 +66,7 @@ export default function (store: Store, token: ?string, request) {
       document.cookie = `token=${code}`;
       token = code;
     } else {
-      request.post(`https://api.twitch.tv/kraken/oauth2/token?client_id=rpj60fikezo717h9d7lka7zq7r1w97&client_secret=j4jbu16f73hkksncxfspvzx6q770dz&grant_type=authorization_code&redirect_uri=http://challenge-series.prettybigjoe.me/redirect&code=${code}`,
+      request.post(`https://api.twitch.tv/kraken/oauth2/token?client_id=rpj60fikezo717h9d7lka7zq7r1w97&client_secret=j4jbu16f73hkksncxfspvzx6q770dz&grant_type=authorization_code&redirect_uri=http://localhost:3000/redirect&code=${code}`,
         (error, response, body) => {
           if (!error && response.statusCode === 200) {
             const data = JSON.parse(body);
@@ -112,6 +114,20 @@ export default function (store: Store, token: ?string, request) {
         />
         <Route path="popout" components={{ body: () => <ChildPopout token={token} /> }} />
       </Route>
+      <Route
+        path="leaderboard"
+        components={{
+          header: null,
+          body: ChildChecklistFinalsLeaderboard,
+        }}
+      />
+      <Route
+        path="fullleaderboard"
+        components={{
+          header: null,
+          body: ChildChecklistLeaderboard,
+        }}
+      />
       {/* <Route component={KeyCounterContainer} path="key-counter">
         <IndexRoute
           components={{

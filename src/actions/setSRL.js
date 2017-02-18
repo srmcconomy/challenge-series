@@ -5,9 +5,10 @@ export type SetSRLAction = {
   srlPlayers: SRLPlayers
 };
 
-export default function setSRL(srlPlayers: SRLPlayers) {
+export default function setSRL(srlPlayers: SRLPlayers, time: number) {
   return {
     type: 'set-srl',
     srlPlayers,
+    time,
   };
 }

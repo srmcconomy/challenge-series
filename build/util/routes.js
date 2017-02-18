@@ -98,7 +98,21 @@ store, token, request) {
         }
       }),
       _react2.default.createElement(_reactRouter.Route, { path: 'popout', components: { body: () => _react2.default.createElement(_ChildPopout2.default, { token: token }) } })
-    )
+    ),
+    _react2.default.createElement(_reactRouter.Route, {
+      path: 'leaderboard',
+      components: {
+        header: null,
+        body: _ChildChecklistFinalsLeaderboard2.default
+      }
+    }),
+    _react2.default.createElement(_reactRouter.Route, {
+      path: 'fullleaderboard',
+      components: {
+        header: null,
+        body: _ChildChecklistLeaderboard2.default
+      }
+    })
   );
 };
 
@@ -155,6 +169,14 @@ var _createNewChildPlayer2 = _interopRequireDefault(_createNewChildPlayer);
 var _ChildPopout = require('../components/ChildPopout');
 
 var _ChildPopout2 = _interopRequireDefault(_ChildPopout);
+
+var _ChildChecklistLeaderboard = require('../components/ChildChecklistLeaderboard');
+
+var _ChildChecklistLeaderboard2 = _interopRequireDefault(_ChildChecklistLeaderboard);
+
+var _ChildChecklistFinalsLeaderboard = require('../components/ChildChecklistFinalsLeaderboard');
+
+var _ChildChecklistFinalsLeaderboard2 = _interopRequireDefault(_ChildChecklistFinalsLeaderboard);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //# sourceMappingURL=routes.js.map

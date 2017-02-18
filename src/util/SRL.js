@@ -11,13 +11,19 @@ export default function (store) {
       });
       res.on('end', () => {
         const { races } = JSON.parse(body);
-        const playerList = store.getState().itemChecklist.playerList;
+        const playerList = store.getState().childChecklist.playerList;
         if (playerList.size > 0) {
           const currentRace = races.find(
             race => !!playerList.find(
-              (_, name) => !!Object.keys(race.entrants).find(
-                entrant => entrant.toLowerCase() === name.toLowerCase()
-              )
+              (_, code) => {
+                if (!store.getState().players.has(code)) {
+                  return false;
+                }
+                const name = store.getState().players.get(code).name;
+                return !!Object.keys(race.entrants).find(
+                  entrant => entrant.toLowerCase() === name.toLowerCase()
+                );
+              }
             )
           );
           if (currentRace) {
@@ -30,7 +36,7 @@ export default function (store) {
               })
             );
             if (srlPlayers.length > 0) {
-              store.dispatch(setSRL(srlPlayers));
+              store.dispatch(setSRL(srlPlayers, currentRace.time));
             }
           }
         }

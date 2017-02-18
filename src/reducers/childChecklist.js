@@ -2,100 +2,85 @@
 
 import { Map, Set, List } from 'immutable';
 
+function calculateScore(player) {
+  return player.items.size + player.skulls.reduce((r, v) => r + v);
+}
+
 export default function itemChecklist(
   state = {
     playerList: new Map(),
     srlPlayers: new List(),
+    time: 0,
   },
   action,
 ) {
   switch (action.type) {
-    case 'increment-hearts':
-      return {
-        ...state,
-        playerList: state.playerList.set(
-          action.player,
-          {
-            ...state.playerList.get(action.player),
-            hearts: state.playerList.get(action.player).hearts + 1,
-            score: state.playerList.get(action.player).score + 1,
-          }
-        )
-      };
-    case 'decrement-hearts':
-      return {
-        ...state,
-        playerList: state.playerList.set(
-          action.player,
-          {
-            ...state.playerList.get(action.player),
-            hearts: state.playerList.get(action.player).hearts - 1,
-            score: state.playerList.get(action.player).score - 1,
-          }
-        )
-      };
-    case 'increment-rupees':
-      return {
-        ...state,
-        playerList: state.playerList.set(
-          action.player,
-          {
-            ...state.playerList.get(action.player),
-            rupees: state.playerList.get(action.player).rupees + 1,
-            score: state.playerList.get(action.player).score + 1,
-          }
-        )
-      };
-    case 'decrement-rupees':
-      return {
-        ...state,
-        playerList: state.playerList.set(
-          action.player,
-          {
-            ...state.playerList.get(action.player),
-            rupees: state.playerList.get(action.player).rupees - 1,
-            score: state.playerList.get(action.player).score - 1,
-          }
-        )
-      };
-    case 'add-child-item-to-player':
+    case 'add-child-skull-to-player': {
       if (!state.playerList.has(action.token)) {
         return state;
       }
-      if (state.playerList.get(action.token).items.has(action.item)) {
-        return state;
-      }
+      const player = state.playerList.get(action.token);
+      player.skulls = player.skulls.set(action.name, player.skulls.get(action.name) + 1);
+      player.score = calculateScore(player);
       return {
         ...state,
         playerList: state.playerList.set(
           action.token,
-          {
-            ...state.playerList.get(action.token),
-            score: state.playerList.get(action.token).items.size + 1,
-            items: state.playerList.get(action.token).items.add(action.item),
-          }
-        ),
+          player,
+        )
       };
-
-    case 'remove-child-item-from-player':
+    }
+    case 'reset-child-player-skulls': {
       if (!state.playerList.has(action.token)) {
         return state;
       }
-      if (!state.playerList.get(action.token).items.has(action.item)) {
-        return state;
-      }
+      const player = state.playerList.get(action.token);
+      player.skulls = player.skulls.set(action.name, 0);
+      player.score = calculateScore(player);
       return {
         ...state,
         playerList: state.playerList.set(
           action.token,
-          {
-            ...state.playerList.get(action.token),
-            score: state.playerList.get(action.token).items.size - 1,
-            items: state.playerList.get(action.token).items.delete(action.item),
-          }
+          player,
+        )
+      };
+    }
+    case 'add-child-item-to-player': {
+      if (!state.playerList.has(action.token)) {
+        return state;
+      }
+      const player = state.playerList.get(action.token);
+      if (player.items.has(action.item)) {
+        return state;
+      }
+      player.items = player.items.add(action.item);
+      player.score = calculateScore(player);
+      return {
+        ...state,
+        playerList: state.playerList.set(
+          action.token,
+          player,
         ),
       };
-
+    }
+    case 'remove-child-item-from-player': {
+      if (!state.playerList.has(action.token)) {
+        return state;
+      }
+      const player = state.playerList.get(action.token);
+      if (!player.items.has(action.item)) {
+        return state;
+      }
+      player.items = player.items.delete(action.item);
+      player.score = calculateScore(player);
+      return {
+        ...state,
+        playerList: state.playerList.set(
+          action.token,
+          player,
+        ),
+      };
+    }
     case 'create-new-child-player':
       return {
         ...state,
@@ -103,8 +88,14 @@ export default function itemChecklist(
           action.token,
           {
             score: 0,
-            hearts: 3,
-            rupees: 0,
+            skulls: new Map({
+              ice: 0,
+              forest: 0,
+              fire: 0,
+              water: 0,
+              shadow: 0,
+              spirit: 0,
+            }),
             items: new Set()
           }
         ),
@@ -113,6 +104,7 @@ export default function itemChecklist(
     case 'set-srl':
       return {
         ...state,
+        time: action.time,
         srlPlayers: new List(action.srlPlayers),
       };
 

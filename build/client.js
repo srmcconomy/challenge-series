@@ -53,8 +53,7 @@ const itemPlayers = new _immutable.Map(Object.keys(window.PRELOADED_STATE.itemCh
 
 const childPlayers = new _immutable.Map(Object.keys(window.PRELOADED_STATE.childChecklist.playerList).map(name => [name, {
   score: window.PRELOADED_STATE.childChecklist.playerList[name].score,
-  hearts: window.PRELOADED_STATE.childChecklist.playerList[name].hearts,
-  rupees: window.PRELOADED_STATE.childChecklist.playerList[name].rupees,
+  skulls: new _immutable.Map(window.PRELOADED_STATE.childChecklist.playerList[name].skulls),
   items: new _immutable.Set(window.PRELOADED_STATE.childChecklist.playerList[name].items)
 }]));
 

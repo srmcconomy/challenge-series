@@ -47,8 +47,7 @@ const childPlayers = new Map(Object.keys(
   name,
   {
     score: window.PRELOADED_STATE.childChecklist.playerList[name].score,
-    hearts: window.PRELOADED_STATE.childChecklist.playerList[name].hearts,
-    rupees: window.PRELOADED_STATE.childChecklist.playerList[name].rupees,
+    skulls: new Map(window.PRELOADED_STATE.childChecklist.playerList[name].skulls),
     items: new Set(window.PRELOADED_STATE.childChecklist.playerList[name].items),
   }
 ]));
