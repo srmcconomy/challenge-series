@@ -66,7 +66,7 @@ export default function (store: Store, token: ?string, request) {
       document.cookie = `token=${code}`;
       token = code;
     } else {
-      request.post(`https://api.twitch.tv/kraken/oauth2/token?client_id=rpj60fikezo717h9d7lka7zq7r1w97&client_secret=j4jbu16f73hkksncxfspvzx6q770dz&grant_type=authorization_code&redirect_uri=http://localhost:3000/redirect&code=${code}`,
+      request.post(`https://api.twitch.tv/kraken/oauth2/token?client_id=rpj60fikezo717h9d7lka7zq7r1w97&client_secret=j4jbu16f73hkksncxfspvzx6q770dz&grant_type=authorization_code&redirect_uri=http://challenge-series.prettybigjoe.me/redirect&code=${code}`,
         (error, response, body) => {
           if (!error && response.statusCode === 200) {
             const data = JSON.parse(body);
