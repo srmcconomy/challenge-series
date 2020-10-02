@@ -19,7 +19,7 @@ import { socketMiddleware, connectStoreWithSocket } from './util/storeSockets';
 import config from '../config';
 import reducers from './reducers';
 import routes from './util/routes';
-import srl from './util/SRL';
+// import srl from './util/SRL';
 
 import elist from './scripts/enemyList';
 
@@ -53,7 +53,7 @@ const store = createStore(
   applyMiddleware(socketMiddleware(io)), //, dbMiddleware)
 );
 
-srl(store);
+// srl(store);
 
 app.use((req, res) => {
   const token = req.cookies.token;
