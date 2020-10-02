@@ -20,8 +20,8 @@ function EnemyCard(props) {
   return _react2.default.createElement(
     'div',
     {
-      className: `EnemyCard${ props.selected ? ' selected' : '' }`,
-      style: { backgroundImage: `url(/images/${ enemyID }.png)` },
+      className: `EnemyCard${props.selected ? ' selected' : ''}`,
+      style: { backgroundImage: `url(/images/${enemyID}.png)` },
       onClick: onClick
     },
     _react2.default.createElement(

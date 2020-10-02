@@ -4,12 +4,13 @@ import setSRL from '../actions/setSRL';
 
 export default function (store) {
   setInterval(() => {
-    http.get('http://api.speedrunslive.com/races', res => {
+    http.get('https://api.speedrunslive.com/races', res => {
       let body = '';
       res.on('data', data => {
         body += data;
       });
       res.on('end', () => {
+        console.log(body);
         const { races } = JSON.parse(body);
         const playerList = store.getState().childChecklist.playerList;
         if (playerList.size > 0) {

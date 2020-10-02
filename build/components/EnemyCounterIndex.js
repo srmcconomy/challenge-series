@@ -26,7 +26,7 @@ let EnemyChecklistIndex = class EnemyChecklistIndex extends _react.Component {
 
     this.onKeyPress = event => {
       if (event.key === 'Enter') {
-        _reactRouter.browserHistory.push(`/enemy-counter/user/${ this.state.value }`);
+        _reactRouter.browserHistory.push(`/enemy-counter/user/${this.state.value}`);
       }
     };
 
@@ -58,7 +58,7 @@ let EnemyChecklistIndex = class EnemyChecklistIndex extends _react.Component {
         _react2.default.createElement('input', { onChange: this.onChange, value: this.state.value, placeholder: 'username', onKeyPress: this.onKeyPress }),
         _react2.default.createElement(
           _reactRouter.Link,
-          { className: 'link', to: `/enemy-counter/user/${ this.state.value }` },
+          { className: 'link', to: `/enemy-counter/user/${this.state.value}` },
           'GO'
         )
       )

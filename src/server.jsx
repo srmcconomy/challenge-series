@@ -3,7 +3,7 @@
 
 import 'source-map-support/register';
 import { createStore, applyMiddleware } from 'redux';
-import { Map } from 'immutable';
+import { Map, List } from 'immutable';
 import { match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
 import express from 'express';
@@ -19,9 +19,9 @@ import { socketMiddleware, connectStoreWithSocket } from './util/storeSockets';
 import config from '../config';
 import reducers from './reducers';
 import routes from './util/routes';
-// import { getInitialState } from './util/db';
-// import dbMiddleware from './util/dbMiddleware';
 import srl from './util/SRL';
+
+import elist from './scripts/enemyList';
 
 global.navigator = { navigator: 'all' };
 
@@ -43,6 +43,13 @@ if (process.env.NODE_ENV === 'production') {
 
 const store = createStore(
   reducers,
+  {
+    enemyChecklist: {
+      playerList: new Map(),
+      enemyList: new Map(elist),
+      srlPlayers: new List(),
+    },
+  },
   applyMiddleware(socketMiddleware(io)), //, dbMiddleware)
 );
 
