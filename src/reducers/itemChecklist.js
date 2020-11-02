@@ -16,7 +16,6 @@ export type ItemChecklistState = {
   playerList: Map<
     string,
     {
-      score: number,
       hearts: number,
       rupees: number,
       items: Set<string>,

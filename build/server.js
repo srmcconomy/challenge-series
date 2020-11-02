@@ -56,10 +56,6 @@ var _routes = require('./util/routes');
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _SRL = require('./util/SRL');
-
-var _SRL2 = _interopRequireDefault(_SRL);
-
 var _enemyList = require('./scripts/enemyList');
 
 var _enemyList2 = _interopRequireDefault(_enemyList);
@@ -67,6 +63,7 @@ var _enemyList2 = _interopRequireDefault(_enemyList);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 global.navigator = { navigator: 'all' };
+// import srl from './util/SRL';
 
 const app = (0, _express2.default)();
 const server = _http2.default.createServer(app);
@@ -93,7 +90,7 @@ const store = (0, _redux.createStore)(_reducers2.default, {
 }, (0, _redux.applyMiddleware)((0, _storeSockets.socketMiddleware)(io)) //, dbMiddleware)
 );
 
-(0, _SRL2.default)(store);
+// srl(store);
 
 app.use((req, res) => {
   const token = req.cookies.token;
